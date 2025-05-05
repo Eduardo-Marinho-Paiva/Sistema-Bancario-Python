@@ -31,12 +31,16 @@ def sacar(saldo_atual,extrato):
         Digite quanto deseja sacar:
         >'''
     # Captar valor de saque valido  
-    while True: 
+    while True:
         valor_saque = float(input(menu_saldo))
         if(saldo_atual >= valor_saque): 
             break
         else:
             print("O valor inválido, tente outro valor.")
+            
+    if(valor_saque <= 0):
+        print("valor de saque não pode ser negativo")
+        return saldo_atual
     # Controle de Extrato e confirmação de operação
     novo_saldo = saldo_atual-valor_saque
     print(f"Saque no valor de {valor_saque:.2f} reais realizado com sucesso, novo saldo é de {novo_saldo:.2f} reais")
@@ -51,6 +55,11 @@ def depositar(saldo,extrato):
         Digite quanto deseja depositar:
         >'''
     valor_deposito = float(input(menu))
+    
+    if(valor_deposito<=0):
+        print("valor de deposito não pode ser negativo !!")
+        return saldo
+    
     novo_saldo = saldo + valor_deposito
     print(f"Depósito no valor de {valor_deposito:.2f} reais realizado com sucesso, seu novo saldo é de {novo_saldo:.2f} reais")
     extrato.append({"Tipo":"Depósito","Valor":valor_deposito,"Saldo":novo_saldo})
@@ -79,7 +88,7 @@ def gerar_extrato(saldo,extrato):
     
 
 # Variaveis
-saldo = 1000 
+saldo = 0 
 extrato = []
 qnt_saques_feitos = 0
 

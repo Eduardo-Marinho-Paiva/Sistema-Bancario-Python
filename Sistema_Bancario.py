@@ -51,6 +51,11 @@ def depositar(saldo,extrato):
         Digite quanto deseja depositar:
         >'''
     valor_deposito = float(input(menu))
+    
+    if(valor_deposito<=0):
+        print("valor de deposito não pode ser negativo !!")
+        return saldo
+    
     novo_saldo = saldo + valor_deposito
     print(f"Depósito no valor de {valor_deposito:.2f} reais realizado com sucesso, seu novo saldo é de {novo_saldo:.2f} reais")
     extrato.append({"Tipo":"Depósito","Valor":valor_deposito,"Saldo":novo_saldo})
